@@ -1,0 +1,183 @@
+
+
+/* CSS Input Forms*/
+
+#field {
+	width: 150%;
+	margin-top: 15%;
+}
+
+.form-group #Legend {
+	font-size: 20px;
+}
+
+.container_form {
+	margin-top: 15%;
+	margin-left: 2%;
+	width: 102.2%;
+}
+
+
+#form1 {
+	width: 45%;
+}
+
+#form2 {
+	width: 45%;
+	float: right;
+}
+
+.bootstrap-iso form body {
+	color: black;
+}
+
+#container-rsi {
+	margin-bottom: 10%;
+}
+
+#rsibuy {
+	width: 500px;
+	float: left;
+}
+
+#rsisell {
+	float: right;
+	width: 500px;
+}
+
+
+
+.container_options_trade {
+	margin-top: 3%;
+	margin-bottom: 2%;
+	border: 2px solid rgba(106, 106, 106,1);
+	border-radius: 10px 10px;
+	box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+	padding: 2.2%;
+}
+
+#container_length {
+	height: 100px;
+}
+
+#length {
+	width: 240px;
+	float: left;
+	margin-right: 5%;
+}
+
+#timeframe {
+	width: 250px;
+	float: left;
+}
+
+#container_btn {
+	margin: 2% 0% 0% 0%;
+}
+
+.form-group #validateBtn {
+	width: 10%;
+	height: 40px;
+	font-size: 18px;
+}
+
+
+
+/* CSS Chart */
+.container_chart {
+	margin: 0 0 0 -30%;
+}
+
+
+/*Customise the select form element*/
+.form-group select option {
+	background-color: #1f1f1f;
+	margin-bottom: 1px;
+	cursor: pointer;
+	padding: 0.5em;
+	border-width: 0;
+	font-size: 18px;
+	opacity: 0.8;
+}
+
+
+.form-group select:focus {
+	background-color: rgba(22, 19, 19, 0.40);
+	color: white;
+}
+
+.form-group select:hover {
+	background-color: rgba(22, 19, 19, 0.40);
+}
+
+.form-group select datalist option:hover {
+	background-color: white;
+	color: black;
+}
+
+
+.form-group select option[data-checked] {
+	background-color: white;
+	color: black;
+}
+
+.form-group select option[value="0"] {
+	display: none;
+}
+/* CSS Table */
+
+.container_table {
+	margin-top: 7%;
+}
+
+	.container_table h1 {
+		font-size: 22px;
+		text-align: center;
+	}
+
+.content-table {
+	border-collapse: collapse;
+	margin: 25px 0;
+	font-size: 1em;
+	min-width: 500px;
+	width: 1120px;
+	color: white;
+}
+
+	.content-table thead tr {
+		background-color: rgba(0,0,0,0.15);
+		border-top: 1px solid white;
+		border-left: 1px solid white;
+		border-right: 1px solid white;
+		color: white;
+		text-align: left;
+	}
+
+
+.table__row {
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+}
+
+.content-table th,
+.content-table td {
+	padding: 10px 15px;
+}
+
+.content-table tbody #gross_profit {
+	color: limegreen;
+}
+
+.content-table tbody #gross_loses {
+	color: red;
+}
+
+.content-table tbody tr {
+	border-bottom: 1px solid white;
+}
+
+
+	.content-table tbody tr:nth-of-type(even) {
+		background-color: rgba(0,0,0,0.15);
+	}
