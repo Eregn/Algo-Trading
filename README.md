@@ -9,7 +9,7 @@
 - flask_sqlalchemy
 - flask_admin
 
-##Flask Server
+## Flask Server
 To run the application, use the flask command or python -m flask. Before you can do that you need to tell your terminal the application to work with by exporting the FLASK_APP environment variable.
 ```
 > set FLASK_APP=hello
