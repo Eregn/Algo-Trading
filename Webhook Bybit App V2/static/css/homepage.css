@@ -1,0 +1,13 @@
+
+.design {
+	text-align: center;
+	font-size: 30px;
+	margin: 32% 0% 0% 50%;
+	color: #444444;
+
+}
+.homepage{
+	background: url("../img/background.jpg") no-repeat ;
+	background-size: cover;
+	background-position:center;
+}

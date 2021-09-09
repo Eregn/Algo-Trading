@@ -1,0 +1,12 @@
+flask
+gunicorn
+bybit
+bybit-ws
+datetime
+pytz
+flask_wtf
+flask_sqlalchemy
+flask_admin
+pandas
+ftx
+ciso8601

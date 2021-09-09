@@ -1,0 +1,41 @@
+
+#LiveChart {
+	margin: 0 0 0 -30%;
+}
+
+#inputField {
+	margin-top: 15%;
+}
+
+#container_inputs {
+	float: left;
+	width: 700px;
+}
+
+#titleBalance {
+	font-size: 27px;
+	font-weight:normal;
+	color: white;
+}
+
+#btcusd {
+	text-align: left;
+	line-height: 50px;
+	color: rgb(25 22 22);
+	font-weight:bold;
+}
+
+#container_wallet {
+	margin-top: 100px;
+	margin-left: 40px;
+	float: right;
+	width: 220px;
+	padding: 10px;
+}
+
+#container {
+	width: 1080px;
+	height: auto;
+
+	
+}
