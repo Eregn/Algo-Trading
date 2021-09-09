@@ -1,6 +1,6 @@
 # Algo-Trading
 ## Algo trading bot in Python using FTX and Bybit Client API
-###Requires
+## Requires
 - Flask 
 - Gunicorn
 - Bybit
