@@ -1,0 +1,10 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+{% if not valide %}
+    <p style="color: white;"> Quantity : 0 - Pips : 0 - Capital : 0 - Max Position : 0 - Percentage : 0 </p>
+{% else %}
+    {% for item in values %}
+        <p style="color:white"> Quantity : {{item.qty}} - Pips Buy : {{item.pips_buy}} - Pips Sell : {{item.pips_sell}} - Capital : {{item.capital}} - Max Position : {{item.max_position}} - Percentage : {{item.percentage}}% </p>
+    {% endfor %}
+{% endif %}
+{% endblock content%}

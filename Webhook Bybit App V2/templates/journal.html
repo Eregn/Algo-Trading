@@ -1,0 +1,17 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+{% if not valide %}
+    <p style="color:white"> Sell Orders : 0 - Buy Orders : 0 - Cancelled Orders : 0  - Orders : 0 </p>
+{% else %}
+    {% for counts in counter %}
+    <p style="color:white"> Sell Orders : {{counts.count_sell}} - Buy Orders : {{counts.count_buy}} - Cancelled Orders : {{counts.count_cancelled}} - Orders : {{counts.count_orders}} </p>
+    {% endfor %}
+{% endif %}
+{% if not prof_val %}
+        <p style="color:white"> Profit Net : 0$ - Gross Profit : 0$ - Gross Lose : 0$ - Percentage Profit : {{perc_prof}}% </p>
+{% else %}
+    {% for prof in profit %}
+        <p style="color:white"> Profit Net : {{prof.profit}}$ - Gross Profit : {{prof.gross_prof}}$ - Gross Lose : {{prof.gross_lose}}$ Percentage Prof : {{perc_prof}}% </p>
+    {% endfor %}
+{% endif%}
+{% endblock content %}

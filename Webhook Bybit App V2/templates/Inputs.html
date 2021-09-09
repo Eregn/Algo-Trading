@@ -1,0 +1,162 @@
+﻿<link rel="stylesheet" type="text/css" href="../static/CSS/Inputs.css">
+
+
+{% extends "layout.html" %}
+{% block content %}
+
+<!--<div class="container-chart">
+	<div id="LiveChart"></div>
+</div>
+
+<script type="text/javascript">
+	var candleData = {{ Candles| tojson }};
+	const chartProperties = {
+		width: 1500,
+		height: 800,
+		timeScale: {
+			timeVisible: true,
+			secondsVisible: true,
+			borderVisible: false,
+			barSpacing: 5,
+
+		},
+		priceScale: {
+			borderVisible: false,
+			scaleMargins: {
+				top: 0.25,
+				bottom: 0.25,
+			},
+		},
+	};
+
+	const domElement = document.getElementById("LiveChart");
+	const chart = LightweightCharts.createChart(domElement, chartProperties);
+	const candleSeries = chart.addCandlestickSeries();
+
+	chart.applyOptions({
+		grid: {
+			vertLines: {
+				color: 'rgba(0, 0, 0, 0.2)',
+				style: 1,
+				visible: true,
+			},
+			horzLines: {
+				color: 'rgba(0, 0, 0, 0.2)',
+				style: 1,
+				visible: true,
+			}
+
+		},
+		layout: {
+			backgroundColor: 'transparent',
+			textColor: 'white',
+			fontSize: 14,
+			fontFamily: 'Calibri',
+
+		},
+
+	});
+
+	candleSeries.setData(candleData);
+</script>
+-->
+<div id="container">
+	<div id="container_inputs">
+		<form method="post" action="">
+			{{ form.hidden_tag() }}
+			<fieldset id="inputField">
+				<legend class="border-bottom mb-4" style="font-size:26px;color:white">Input Field</legend>
+				<div class="form-group">
+					{{ form.quantity.label(class="form-control-label") }}
+					{% if form.quantity.errors %}
+					{{ form.quantity(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for errors in form.quantity.errors %}
+						<span>{{ error }}</span>
+						{% endfor%}
+					</div>
+					{% else %}
+					{{ form.quantity(class="form-control form-control-lg") }}
+					{% endif%}
+
+				</div>
+				<div class="form-group">
+					{{ form.pips_buy.label(class="form-control-label") }}
+					{% if form.pips_buy.errors %}
+					{{ form.pips_buy(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for errors in form.pips_buy.errors %}
+						<span>{{ error }}</span>
+						{% endfor%}
+					</div>
+					{% else %}
+					{{ form.pips_buy(class="form-control form-control-lg") }}
+					{% endif%}
+
+				</div>
+				<div class="form-group">
+					{{ form.pips_sell.label(class="form-control-label") }}
+					{% if form.pips_sell.errors %}
+					{{ form.pips_sell(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for errors in form.pips_sell.errors %}
+						<span>{{ error }}</span>
+						{% endfor%}
+					</div>
+					{% else %}
+					{{ form.pips_sell(class="form-control form-control-lg") }}
+					{% endif%}
+				</div>
+				<div class="form-group">
+					{{ form.max_pos.label(class="form-control-label") }}
+					{% if form.max_pos.errors %}
+					{{ form.max_pos(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for errors in form.max_pos.errors %}
+						<span>{{ error }}</span>
+						{% endfor%}
+					</div>
+					{% else %}
+					{{ form.max_pos(class="form-control form-control-lg") }}
+					{% endif%}
+
+				</div>
+				<div class="form-group">
+					{{ form.capital_fund.label(class="form-control-label") }}
+					{% if form.capital_fund.errors %}
+					{{ form.capital_fund(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for errors in form.capital_fund.errors %}
+						<span>{{ error }}</span>
+						{% endfor%}
+					</div>
+					{% else %}
+					{{ form.capital_fund(class="form-control form-control-lg") }}
+					{% endif%}
+				</div>
+				<div class="form-group">
+					{{ form.loss_percentage.label(class="form-control-label") }}
+					{% if form.loss_percentage.errors %}
+					{{ form.loss_percentage(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for errors in form.loss_percentage.errors %}
+						<span>{{ error }}</span>
+						{% endfor%}
+					</div>
+					{% else %}
+					{{ form.loss_percentage(class="form-control form-control-lg") }}
+					{% endif%}
+				</div>
+			</fieldset>
+			<div class="form-group">
+				{{ form.validate(class="btn btn-outline-info") }}
+			</div>
+		</form>
+	</div>
+	<div id="container_wallet">
+		<h1 id="titleBalance">Wallet Balance</h1>
+		<p id="btcusd">BTCUSD: {{ btcBalance }}</p>
+	</div>
+</div>
+
+{% endblock content %}

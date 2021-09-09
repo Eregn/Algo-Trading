@@ -1,0 +1,281 @@
+<link rel="stylesheet" type="text/css" href="../static/CSS/testing.css">
+
+
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+	<div class="container_chart">
+		<div id="chart"></div>
+	</div>
+	<div class="container_table">
+		<table class="content-table">
+			<thead>
+				<tr class="table__header">
+					<th table__cell></th>
+					<th>All</th>
+					<th>Long</th>
+					<th>Short</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="table__row">
+					<td>Net Profit</td>
+					<td>{{ sum }}%<br />(${{ dollarSum }})</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="table__row">
+					<td>Gross value</td>
+					<td></td>
+					<td id="gross_profit">{{ gross_prof }}%<br />(${{ dollarWins }})</td>
+					<td id="gross_loses">{{ gross_lose }}%<br />(${{ dollarLoses }})</td>
+				</tr>
+				<tr class="table__row">
+					<td>Average Trades</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+				<tr class="table__row">
+					<td>Number of Trades</td>
+					<td>{{ totalTrades }}</td>
+					<td id="wins"></td>
+					<td id="loses"></td>
+				</tr>
+				<tr class="table__row">
+					<td>Number of Winnings</td>
+					<td>0</td>
+					<td id="wins">{{ wins }}</td>
+					<td id="loses">0</td>
+				</tr>
+				<tr class="table__row">
+					<td>Number of Loses</td>
+					<td>0</td>
+					<td id="wins">{{ loses }}</td>
+					<td id="loses">0</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	var data = {{ values| tojson }};
+	var marker = {{ markers | tojson }};
+	var Rsi = {{ rsi | tojson}};
+	console.log(data);
+
+	var domElement = document.getElementById('chart')
+	var chart = LightweightCharts.createChart(domElement, {
+		width: 1500,
+		height: 800,
+		rightPriceScale: {
+			scaleMargins: {
+				top: 0.3,
+				bottom: 0.25,
+			},
+			borderVisible: false,
+		},
+		layout: {
+			backgroundColor: 'transparent',
+			textColor: '#d1d4dc',
+		},
+		grid: {
+			vertLines: {
+				color: 'rgba(42, 46, 57, 0)',
+			},
+			horzLines: {
+				color: 'rgba(42, 46, 57, 0.6)',
+			},
+		},
+	});
+
+	var areaSeries = chart.addAreaSeries({
+		topColor: 'rgba(38,198,218, 0.56)',
+		bottomColor: 'rgba(38,198,218, 0.04)',
+		lineColor: 'rgba(38,198,218, 1)',
+		lineWidth: 2,
+	});
+
+	var rsiSeries = chart.addAreaSeries({
+		topColor: 'rgba(190, 28, 199, 0.56)',
+		bottomColor: 'rgba(190, 28, 199, 0.04)',
+		lineColor: 'rgba(190, 28, 199, 1)',
+		lineWidth: 2,
+		priceScaleId: '',
+		scaleMargins: {
+			top: 0.8,
+			bottom: 0,
+		},
+	});
+
+	areaSeries.setData(data);
+	areaSeries.setMarkers(marker);
+	rsiSeries.setData(Rsi);
+
+</script>
+
+
+<div class="container_form">
+	<form action="{{ url_for('testing') }}" method="post">
+		{{ form.hidden_tag() }}
+		<fieldset id="field">
+			<legend class="border-bottom mb-4" id="Legend" style="font-size:26px;color:white">Input Field</legend>
+			<div class="form-group" id="capital">
+				{{ form.Capital.label(class="form-control-label") }}
+				{% if form.Capital.errors %}
+				{{ form.Capital(class="form-control form-control-lg is-invalid") }}
+				<div class="invalid-feedback">
+					{% for errors in form.Capital.errors %}
+					<span>{{ error }}</span>
+					{% endfor%}
+				</div>
+				{% else %}
+				{{ form.Capital(class="form-control form-control-lg") }}
+				{% endif%}
+			</div>
+			<div class="form-group" id="size">
+				{{ form.Size.label(class="form-control-label") }}
+				{% if form.Size.errors %}
+				{{ form.Size(class="form-control form-control-lg is-invalid") }}
+				<div class="invalid-feedback">
+					{% for errors in form.Size.errors %}
+					<span>{{ error }}</span>
+					{% endfor%}
+				</div>
+				{% else %}
+				{{ form.Size(class="form-control form-control-lg") }}
+				{% endif%}
+			</div>
+			<div class="form-group" id="form2">
+				{{ form.Time_to_sell.label(class="form-control-label") }}
+				{% if form.Time_to_sell.errors %}
+				{{ form.Time_to_sell(class="form-control form-control-lg is-invalid") }}
+				<div class="invalid-feedback">
+					{% for errors in form.Time_to_sell.errors %}
+					<span>{{ error }}</span>
+					{% endfor%}
+				</div>
+				{% else %}
+				{{ form.Time_to_sell(class="form-control form-control-lg") }}
+				{% endif%}
+			</div>
+			<div class="form-group" id="form1">
+				{{ form.Time_to_buy.label(class="form-control-label") }}
+				{% if form.Time_to_buy.errors %}
+				{{ form.Time_to_buy(class="form-control form-control-lg is-invalid") }}
+				<div class="invalid-feedback">
+					{% for errors in form.Time_to_buy.errors %}
+					<span>{{ error }}</span>
+					{% endfor%}
+				</div>
+				{% else %}
+				{{ form.Time_to_buy(class="form-control form-control-lg") }}
+				{% endif%}
+			</div>
+			<div id="container-rsi">
+				<div class="form-group" id="rsibuy">
+					{{ form.RsiBuy.label(class="form-control-label") }}
+					{% if form.RsiBuy.errors %}
+					{{ form.RsiBuy(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for errors in form.RsiBuy.errors %}
+						<span>{{ error }}</span>
+						{% endfor%}
+					</div>
+					{% else %}
+					{{ form.RsiBuy(class="form-control form-control-lg") }}
+					{% endif%}
+				</div>
+				<div class="form-group" id="rsisell">
+					{{ form.RsiSell.label(class="form-control-label") }}
+					{% if form.RsiSell.errors %}
+					{{ form.RsiSell(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for errors in form.RsiSell.errors %}
+						<span>{{ error }}</span>
+						{% endfor%}
+					</div>
+					{% else %}
+					{{ form.RsiSell(class="form-control form-control-lg") }}
+					{% endif%}
+				</div>
+			</div>
+
+			<div class="container_dates">
+				<div class="form-group" id="dateStart">
+					<label class="control-label" for="datestart">Date start</label>
+					<input type="text" class="form-control" name="datestart" id="datestart" placeholder="YYY/MM/DD" required />
+				</div>
+				<div class="form-group" id="dateEnd">
+					<label class="control-label" for="datend">Date end</label>
+					<input type="text" class="form-control" name="datend" id="datend" placeholder="YYY/MM/DD" required />
+				</div>
+			</div>
+
+			<div class="container_options_trade">
+				<div class="form-group" id="options">
+					{{ form.Options.label(class="form-control-label") }}
+					{{ form.Options(class="form-control form-control-lg") }}
+				</div>
+				<div class="container_sl_tp">
+					<div class="form-group" id="Tp">
+						{{ form.Tp.label(class="form-control-label") }}
+						{% if form.Tp.errors %}
+						{{ form.Tp(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for errors in form.Tp.errors %}
+							<span>{{ error }}</span>
+							{% endfor%}
+						</div>
+						{% else %}
+						{{ form.Tp(class="form-control form-control-lg") }}
+						{% endif%}
+					</div>
+					<div class="form-group" id="Sl">
+						{{ form.Sl.label(class="form-control-label") }}
+						{% if form.Sl.errors %}
+						{{ form.Sl(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for errors in form.Sl.errors %}
+							<span>{{ error }}</span>
+							{% endfor%}
+						</div>
+						{% else %}
+						{{ form.Sl(class="form-control form-control-lg") }}
+						{% endif%}
+					</div>
+				</div>
+				<div id="container_length">
+					<div class="form-group" id="length">
+						{{ form.Length.label(class="form-control-label") }}
+						{% if form.Length.errors %}
+						{{ form.Length(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for errors in form.Length.errors %}
+							<span>{{ error }}</span>
+							{% endfor%}
+						</div>
+						{% else %}
+						{{ form.Length(class="form-control form-control-lg") }}
+						{% endif%}
+					</div>
+					<div class="form-group" id="timeframe">
+						{{ form.TimeFrame.label(class="form-control-label") }}
+						{{ form.TimeFrame(class="form-control form-control-lg") }}
+					</div>
+				</div>
+			</div>
+			<div class="form-group" id="container_btn">
+				{{ form.submit_date(class="btn btn-outline-info", id="validateBtn") }}
+			</div>
+		</fieldset>
+
+	</form>
+</div>
+{% endblock %}
+
+  
